@@ -1,0 +1,55 @@
+<header class="header" id="header">
+   <nav class="nav container">
+      <a href="{% url 'home' %}" class="nav__logo">Dr Ben</a>
+
+      <div class="nav__menu" id="nav-menu">
+         <ul class="nav__list">
+            <li class="nav__item">
+               <a href="{% url 'home' %}" class="nav__link">Accueil</a>
+            </li>
+
+            <li class="nav__item">
+               <a href="{% url 'about_us' %}" class="nav__link">A propos de moi</a>
+            </li>
+
+            <li class="nav__item">
+               <a href="{% url 'portfolio' %}" class="nav__link">Portfolio</a>
+            </li>
+            <li class="nav__item">
+               <a href="{% url 'article_list' %}" class="nav__link">Blog</a>
+            </li>
+
+            <li class="nav__item">
+               <a href="{% url 'contact_us' %}" class="nav__link">Contact</a>
+            </li>
+            
+            {% if user.is_authenticated %}
+            <li class="nav__item">
+               <a href="{% url 'accounts:profile' %}"><img src="{{ user.profile_image.url }}" alt="Profil Image" class="user-image"></a>
+
+            </li>
+            {% else %}
+            <li class="nav__item">
+               <a href="{% url 'accounts:login' %}" class="nav__link">Connexion</a>
+            </li>
+            {% endif %}
+               
+         </ul>
+
+         <!-- Close button -->
+         <div class="nav__close" id="nav-close">
+            <i class="ri-close-line"></i>
+         </div>
+      </div>
+
+      <div class="nav__actions">
+         <!-- Theme button -->
+         <i class="ri-moon-line change-theme" id="theme-button"></i>
+
+         <!-- Toggle button -->
+         <div class="nav__toggle" id="nav-toggle">
+            <i class="ri-apps-2-line"></i>
+         </div>
+      </div>
+   </nav>
+</header>

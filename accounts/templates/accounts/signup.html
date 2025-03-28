@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock style %}
+
+{% block content %}
+<div class="custom-container">
+    <h2 class="custom-title">Inscription</h2>
+
+    {% if messages %}
+    <div class="custom-messages">
+        {% for message in messages %}
+        <div class="custom-message {% if message.tags == 'error' %}custom-error{% else %}custom-success{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <!-- Email (reste seul) -->
+        <div class="custom-form-group">
+            <label for="{{ form.email.id_for_label }}" class="custom-label">Email:</label>
+            {{ form.email }}
+            {% if form.email.errors %}
+            <p class="custom-error-text">{{ form.email.errors.0 }}</p>
+            {% endif %}
+        </div>
+
+        <!-- Prénom + Nom (en ligne) -->
+        <div class="form-row">
+            <div class="custom-form-group">
+                <label for="{{ form.first_name.id_for_label }}" class="custom-label">Prénom:</label>
+                {{ form.first_name }}
+                {% if form.first_name.errors %}
+                <p class="custom-error-text">{{ form.first_name.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <div class="custom-form-group">
+                <label for="{{ form.last_name.id_for_label }}" class="custom-label">Nom:</label>
+                {{ form.last_name }}
+                {% if form.last_name.errors %}
+                <p class="custom-error-text">{{ form.last_name.errors.0 }}</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Mot de passe + Confirmation (en ligne) -->
+        <div class="form-row">
+            <div class="custom-form-group">
+                <label for="{{ form.password1.id_for_label }}" class="custom-label">Mot de passe:</label>
+                {{ form.password1 }}
+                {% if form.password1.errors %}
+                <p class="custom-error-text">{{ form.password1.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <div class="custom-form-group">
+                <label for="{{ form.password2.id_for_label }}" class="custom-label">Confirmation:</label>
+                {{ form.password2 }}
+                {% if form.password2.errors %}
+                <p class="custom-error-text">{{ form.password2.errors.0 }}</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Image de profil avec aperçu -->
+        <div class="form-row">
+            <div class="custom-form-group">
+                <label for="{{ form.profile_image.id_for_label }}" class="custom-label">Image de profil:</label>
+                <div class="custom-file-input">
+                    {{ form.profile_image }}
+                </div>
+                {% if form.profile_image.errors %}
+                <p class="custom-error-text">{{ form.profile_image.errors.0 }}</p>
+                {% endif %}
+            </div>
+            <div class="image-preview">
+                <img id="previewImage" src="#" alt="Aperçu de l'image" />
+            </div>
+        </div>
+
+        <button type="submit" class="custom-button">
+            S'inscrire
+        </button>
+    </form>
+
+    <p class="custom-link">
+        Déjà un compte? <a href="{% url 'accounts:login' %}" class="custom-link-text">Se connecter</a>
+    </p>
+</div>
+
+
+{% block script %}
+   {{ block.super }}
+   <script>
+    // Ajouter la classe custom-input à tous les champs du formulaire
+    document.addEventListener('DOMContentLoaded', function() {
+        // Ajouter classes et placeholders aux champs
+        const formFields = {
+            'id_email': { class: 'custom-input', placeholder: 'Entrez votre adresse email' },
+            'id_first_name': { class: 'custom-input', placeholder: 'Votre prénom' },
+            'id_last_name': { class: 'custom-input', placeholder: 'Votre nom de famille' },
+            'id_password1': { class: 'custom-input', placeholder: 'Choisissez un mot de passe sécurisé' },
+            'id_password2': { class: 'custom-input', placeholder: 'Confirmez votre mot de passe' }
+        };
+        
+        for (const [id, attrs] of Object.entries(formFields)) {
+            const field = document.getElementById(id);
+            if (field) {
+                field.classList.add(attrs.class);
+                field.setAttribute('placeholder', attrs.placeholder);
+            }
+        }
+    });
+
+    // Gestion de l'aperçu de l'image
+    document.getElementById('id_profile_image').addEventListener('change', function(e) {
+        const previewImage = document.getElementById('previewImage');
+        const file = e.target.files[0];
+        
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewImage.src = e.target.result;
+                previewImage.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        } else {
+            previewImage.src = '#';
+            previewImage.style.display = 'none';
+        }
+    });
+</script>
+{% endblock script %}
+    
+
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+   Travaux du Dr Ben
+{% endblock title %}
+   
+{% block content %}
+      <main class="main">
+         <!--==================== TRAVAUX ====================-->
+         <section class="work section">
+            <h2 class="section__title">
+               Mes Réalisations <br>
+               Récentes
+            </h2>
+
+            <div class="work__container work__page container grid">
+               <article class="work__card">
+                  <a href="#" target="_blank" class="work__link">
+                     <img src="{% static 'assets/img/work-1.png' %}" alt="Consultation médicale" class="work__img">
+                     <i class="ri-arrow-right-circle-line work__icon"></i>
+                  </a>
+
+                  <h2 class="work__title">Consultation Médicale</h2>
+                  <span class="work__subtitle">Soins primaires et diagnostics</span>
+               </article>
+
+               <article class="work__card">
+                  <a href="#" target="_blank" class="work__link">
+                     <img src="{% static 'assets/img/work-2.png' %}" alt="Campagne de vaccination" class="work__img">
+                     <i class="ri-arrow-right-circle-line work__icon"></i>
+                  </a>
+
+                  <h2 class="work__title">Campagne de Vaccination</h2>
+                  <span class="work__subtitle">Prévention et santé publique</span>
+               </article>
+
+               <article class="work__card">
+                  <a href="#" target="_blank" class="work__link">
+                     <img src="{% static 'assets/img/work-3.png' %}" alt="Bilan de santé" class="work__img">
+                     <i class="ri-arrow-right-circle-line work__icon"></i>
+                  </a>
+
+                  <h2 class="work__title">Bilan de Santé Annuel</h2>
+                  <span class="work__subtitle">Dépistage et prévention</span>
+               </article>
+
+               <article class="work__card">
+                  <a href="#" target="_blank" class="work__link">
+                     <img src="{% static 'assets/img/work-4.png' %}" alt="Prise en charge des urgences" class="work__img">
+                     <i class="ri-arrow-right-circle-line work__icon"></i>
+                  </a>
+
+                  <h2 class="work__title">Prise en Charge des Urgences</h2>
+                  <span class="work__subtitle">Soins immédiats et efficaces</span>
+               </article>
+
+               <article class="work__card">
+                  <a href="#" target="_blank" class="work__link">
+                     <img src="{% static 'assets/img/work-5.png' %}" alt="Éducation des patients" class="work__img">
+                     <i class="ri-arrow-right-circle-line work__icon"></i>
+                  </a>
+
+                  <h2 class="work__title">Éducation des Patients</h2>
+                  <span class="work__subtitle">Sensibilisation et prévention</span>
+               </article>
+
+               <article class="work__card">
+                  <a href="#" target="_blank" class="work__link">
+                     <img src="{% static 'assets/img/work-6.png' %}" alt="Équipements médicaux" class="work__img">
+                     <i class="ri-arrow-right-circle-line work__icon"></i>
+                  </a>
+
+                  <h2 class="work__title">Équipements Modernes</h2>
+                  <span class="work__subtitle">Technologies de pointe</span>
+               </article>
+            </div>
+         </section>
+      </main>
+
+{% endblock content %}
+
+{% block script %}
+         {{ block.super }}
+         <script src="{% static 'assets/js/main.js' %}"></script>
+{% endblock script %}

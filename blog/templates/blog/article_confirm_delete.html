@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}Supprimer l'article{% endblock %}
+
+{% block style %}
+    {{ block.super }}
+    <style>
+        .delete-article-container {
+            max-width: 600px;
+            margin: 2em auto;
+            padding: 2rem;
+            background-color: var(--container-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px var(--shadow-color);
+        }
+
+        .delete-article-title {
+            font-size: var(--h1-font-size);
+            color: var(--title-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .delete-article-message {
+            font-size: var(--normal-font-size);
+            color: var(--text-color);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .delete-article-form {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-size: var(--normal-font-size);
+            font-weight: var(--font-medium);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-delete {
+            background-color: var(--first-color);
+            color: var(--white-color);
+            border: none;
+        }
+
+        .btn-delete:hover {
+            background-color: var(--first-color-alt);
+        }
+
+        .btn-cancel {
+            background-color: var(--text-color-light);
+            color: var(--white-color);
+            border: none;
+        }
+
+        .btn-cancel:hover {
+            background-color: var(--text-color);
+        }
+    </style>
+{% endblock style %}
+    
+{% block content %}
+    <br><br>
+    <div class="delete-article-container section" style="padding-top: 10rem;"> <!-- Marge vers le haut augmentée à 10rem -->
+        <h1 class="delete-article-title">Supprimer l'article</h1>
+        <p class="delete-article-message">Êtes-vous sûr de vouloir supprimer l'article "{{ article.titre }}" ?</p>
+        <form method="post" class="delete-article-form">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-delete">Confirmer la suppression</button>
+            <a href="{% url 'article_detail' article.slug %}" class="btn btn-cancel">Annuler</a>
+        </form>
+    </div>
+    <br><br>
+
+{% endblock %}

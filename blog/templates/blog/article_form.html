@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if form.instance.pk %}Modifier{% else %}Créer{% endif %} un article - Dr Ben{% endblock %}
+
+{% block style %}
+    {{ block.super }}
+    <style>
+        /* Style pour la section du formulaire */
+        .article-form-section {
+            padding: 5rem 0; /* Utilisation de rem pour l'espacement */
+            background-color: var(--container-color);
+        }
+
+        .section-title {
+            font-size: var(--h1-font-size);
+            font-weight: var(--font-semi-bold);
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--title-color);
+        }
+
+        .section-subtitle {
+            font-size: var(--normal-font-size);
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+        }
+
+        /* Style du formulaire */
+        .article-form {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: var(--body-color);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px var(--shadow-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: var(--normal-font-size);
+            font-weight: var(--font-medium);
+            margin-bottom: 0.5rem;
+            color: var(--title-color);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: var(--normal-font-size);
+            border: 1px solid var(--text-color-light);
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+            background-color: var(--container-color);
+            color: var(--text-color);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--first-color);
+            outline: none;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .error-message {
+            color: hsl(0, 70%, 50%); /* Couleur d'erreur */
+            font-size: var(--small-font-size);
+            margin-top: 0.5rem;
+        }
+
+        /* Style des boutons */
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn-primary {
+            background-color: var(--first-color);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: var(--normal-font-size);
+            font-weight: var(--font-medium);
+            border-radius: 5px;
+            color: var(--white-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--first-color-alt);
+        }
+
+        .btn-secondary {
+            background-color: var(--text-color-light);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: var(--normal-font-size);
+            font-weight: var(--font-medium);
+            border-radius: 5px;
+            color: var(--white-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--text-color);
+        }
+    </style>
+{% endblock style %}
+
+{% block content %}
+<section class="article-form-section">
+    <div class="container">
+        <h1 class="section-title">{% if form.instance.pk %}Modifier{% else %}Créer{% endif %} un article</h1>
+        <p class="section-subtitle">
+            {% if form.instance.pk %}
+                Mettez à jour les informations de votre article.
+            {% else %}
+                Partagez vos connaissances en rédigeant un nouvel article.
+            {% endif %}
+        </p>
+
+        <form method="post" enctype="multipart/form-data" class="article-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.titre.id_for_label }}">Titre</label>
+                {{ form.titre }}
+                {% if form.titre.errors %}
+                    <div class="error-message">{{ form.titre.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.contenu.id_for_label }}">Contenu</label>
+                {{ form.contenu }}
+                {% if form.contenu.errors %}
+                    <div class="error-message">{{ form.contenu.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.image.id_for_label }}">Image</label>
+                {{ form.image }}
+                {% if form.image.errors %}
+                    <div class="error-message">{{ form.image.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.video.id_for_label }}">Vidéo</label>
+                {{ form.video }}
+                {% if form.video.errors %}
+                    <div class="error-message">{{ form.video.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                    {% if form.instance.pk %}Mettre à jour{% else %}Créer{% endif %}
+                </button>
+                <a href="{% url 'article_list' %}" class="btn btn-secondary">Annuler</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

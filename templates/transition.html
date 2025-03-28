@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+   transition
+{% endblock title %}
+
+{% block style %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/transition.css' %}">
+
+{% endblock style %}
+
+{% block content %}
+<br> <br>
+<div class="container">
+    <h1>Page de Transition</h1>
+    <p>Bienvenue sur la page de transition. Utilisez les boutons ci-dessous pour naviguer.</p>
+
+    <a href="{% url 'admin:index' %}" class="btn btn-primary">
+        Aller à l'Administration
+    </a>
+
+    <a href="{% url 'article_create' %}" class="btn btn-primary">
+        Créer un Article
+    </a>
+
+    <div class="stats">
+        <div class="stat-item">
+            <h3>Articles</h3>
+            <p>{{ nombre_articles }}</p>
+        </div>
+        <div class="stat-item">
+            <h3>Commentaires</h3>
+            <p>{{ nombre_commentaires }}</p>
+        </div>
+        <div class="stat-item">
+            <h3>Utilisateurs</h3>
+            <p>{{ nombre_utilisateurs }}</p>
+        </div>
+    </div>
+
+    {% if dernier_article %}
+        <div class="last-article">
+            <p>Le dernier article publié:</p>
+            <a href="{% url 'article_detail' dernier_article.slug %}">
+                <h3>{{ dernier_article.titre }}</h3>
+                <p>Créé le {{ dernier_article.date_creation|date:"d/M/Y à H\hi" }}</p>
+            </a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

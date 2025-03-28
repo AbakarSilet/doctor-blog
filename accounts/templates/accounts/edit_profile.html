@@ -1,0 +1,204 @@
+{% extends 'base.html' %}
+
+{% block style %}
+{{ block.super }}
+<style>
+    .profile-edit-section {
+        max-width: 600px;
+        margin: auto;
+        padding: 2rem;
+        margin-top: 70px;
+        background-color: var(--container-color);
+        box-shadow: 0 4px 6px var(--shadow-color);
+        border-radius: 12px;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--title-color);
+        font-weight: var(--font-medium);
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid var(--text-color-light);
+        border-radius: 8px;
+        background-color: var(--body-color);
+        color: var(--text-color);
+        transition: border-color 0.3s ease;
+    }
+
+    .form-input:focus {
+        outline: none;
+        border-color: var(--first-color);
+        box-shadow: 0 0 0 3px var(--first-color-light);
+    }
+
+    .profile-image-container {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .profile-image-preview {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid var(--first-color-light);
+        box-shadow: 0 4px 6px var(--shadow-color);
+    }
+
+    .profile-image-upload {
+        position: relative;
+        width: 100%;
+    }
+
+    .custom-file-upload {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background-color: var(--first-color-light);
+        color: var(--first-color);
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .custom-file-upload:hover {
+        background-color: var(--first-color);
+        color: var(--white-color);
+    }
+
+    .file-input {
+        position: absolute;
+        left: -9999px;
+        opacity: 0;
+    }
+
+    .file-name {
+        margin-top: 0.5rem;
+        color: var(--text-color);
+        font-size: var(--small-font-size);
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 0.75rem;
+        background-color: var(--first-color);
+        color: var(--white-color);
+        border: none;
+        border-radius: 8px;
+        font-weight: var(--font-semi-bold);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .submit-btn:hover {
+        background-color: var(--first-color-alt);
+    }
+
+    @media screen and (max-width: 600px) {
+        .profile-image-container {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+</style>
+{% endblock style %}
+
+{% block content %}
+<div class="section profile-edit-section">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="{{ form.first_name.id_for_label }}" class="form-label">Prénom</label>
+            {{ form.first_name }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.last_name.id_for_label }}" class="form-label">Nom</label>
+            {{ form.last_name }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
+            {{ form.email }}
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Image de profil</label>
+            <div class="profile-image-container">
+                {% if form.profile_image.value %}
+                <img src="{{ form.profile_image.value.url }}" alt="Image de profil actuelle"
+                    class="profile-image-preview" id="profile-image-preview">
+                {% else %}
+                <div class="profile-image-preview" id="profile-image-preview"
+                    style="background-color: var(--first-color-light); display: flex; align-items: center; justify-content: center; color: var(--first-color);">
+                    Pas d'image
+                </div>
+                {% endif %}
+
+                <div class="profile-image-upload">
+                    <input type="file" name="profile_image" id="profile-image-input" class="file-input"
+                        accept="image/*">
+                    <label for="profile-image-input" class="custom-file-upload">
+                        Choisir une image
+                    </label>
+                    <div class="file-name" id="file-name"></div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Mettre à jour le profil</button>
+    </form>
+</div>
+{% endblock content %}
+
+{% block script %}
+{{ block.super }}
+<script>
+    // Ajouter des classes personnalisées aux champs de formulaire
+    document.querySelectorAll('input:not([type="file"]), select, textarea').forEach(input => {
+        input.classList.add('form-input');
+    });
+
+    // Prévisualisation de l'image de profil
+    const profileImageInput = document.getElementById('profile-image-input');
+    const profileImagePreview = document.getElementById('profile-image-preview');
+    const fileNameDisplay = document.getElementById('file-name');
+
+    profileImageInput.addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            // Mettre à jour le nom du fichier
+            fileNameDisplay.textContent = file.name;
+
+            // Prévisualisation de l'image
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                if (profileImagePreview.tagName === 'IMG') {
+                    profileImagePreview.src = e.target.result;
+                } else {
+                    const newImg = document.createElement('img');
+                    newImg.src = e.target.result;
+                    newImg.classList.add('profile-image-preview');
+                    newImg.id = 'profile-image-preview';
+                    profileImagePreview.parentNode.replaceChild(newImg, profileImagePreview);
+                }
+            };
+            reader.readAsDataURL(file);
+        } else {
+            // Réinitialiser si aucun fichier n'est sélectionné
+            fileNameDisplay.textContent = '';
+        }
+    });
+</script>
+{% endblock script %}

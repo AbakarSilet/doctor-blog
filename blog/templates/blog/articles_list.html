@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Articles - Dr Ben{% endblock %}
+
+{% block style %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/article_list.css' %}">
+{% endblock style %}
+
+{% block content %}
+<section class="articles-section">
+    <div class="container">
+        <h1 class="section-title">                       </h1>
+        <p class="section-subtitle">Découvrez mes derniers articles</p>
+
+        <div class="row g-4">
+            {% for article in articles %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card article-card">
+                    {% if article.image or article.video %}
+                    <div class="article-media">
+                        {% if article.image %}
+                        <a href="{% url 'article_detail' article.slug %}"><img src="{{ article.image.url }}" alt="{{ article.titre }}"></a>
+                        {% elif article.video %}
+                        <video controls>
+                            <source src="{{ article.video.url }}" type="video/mp4">
+                            Votre navigateur ne supporte pas la lecture de vidéos.
+                        </video>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.titre }}</h5>
+                        <p class="card-text">{{ article.contenu|truncatewords:30 }}</p>
+                        <div class="article-meta">
+                            <!-- <span class="author">Par {{ article.auteur }}</span> -->
+                            <span class="date">{{ article.date_creation|date:"d/m/Y" }}</span>
+                        </div>
+                        <a href="{% url 'article_detail' article.slug %}" class="btn btn-outline-primary">Lire plus</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p class="text-center">Aucun article pour le moment.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block script %}
+    {{ block.super }}
+{% endblock script %}

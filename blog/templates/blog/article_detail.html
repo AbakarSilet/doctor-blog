@@ -1,0 +1,425 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/article_detail.css' %}">
+{% endblock style %}
+
+{% block title %}{{ article.titre }}{% endblock %}
+
+{% block content %}
+<div class="article-container">
+    <article class="article-content">
+        <div class="article-header">
+            <h1 class="article-title">{{ article.titre }}</h1>
+            
+            {% if user.groups.all.0.name == 'Admin' %}
+                <div class="article-actions">
+                    <a href="{% url 'article_update' article.slug %}" class="icon-button" title="Modifier l'article">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="{% url 'article_delete' article.slug %}" class="icon-button icon-button-danger" title="Supprimer l'article">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+        
+        <p class="article-meta">
+            le {{ article.date_creation|date:"d M Y à H:i" }}
+        </p>
+        
+        <div class="article-body">
+            {{ article.contenu|linebreaks }}
+            
+            {% if article.image %}
+                <div class="article-image">
+                    <img src="{{ article.image.url }}" alt="{{ article.titre }}">
+                </div>
+            {% endif %}
+            
+            {% if article.video %}
+                <div class="article-video">
+                    <video controls>
+                        <source src="{{ article.video.url }}" type="video/mp4">
+                        Votre navigateur ne supporte pas la lecture de vidéos.
+                    </video>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Bouton Like -->
+        <div class="like-section">
+            <button class="like-button {% if request.user in article.likes.all %}liked{% endif %}" 
+                    id="likeButton" 
+                    data-article-slug="{{ article.slug }}"
+                    {% if not user.is_authenticated %}disabled{% endif %}>
+                <i class="{% if request.user in article.likes.all %}fas{% else %}far{% endif %} fa-heart"></i>
+                <span id="likeCount">{{ article.total_likes }}</span>
+            </button>
+        </div>
+
+        <!-- Boutons de partage -->
+        <div class="share-buttons">
+            <a href="https://twitter.com/intent/tweet?text={{ article.titre|urlencode }}&url={{ request.build_absolute_uri|urlencode }}" 
+                class="share-button share-twitter" target="_blank">
+                <img src="{% static 'images/twitter-svgrepo-com.svg' %}" alt="Partager sur Twitter" class="share-icon">
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}" 
+                class="share-button share-facebook" target="_blank">
+                <img src="{% static 'images/facebook-svgrepo-com.svg' %}" alt="Partager sur Facebook" class="share-icon">
+            </a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri|urlencode }}&title={{ article.titre|urlencode }}" 
+                class="share-button share-linkedin" target="_blank">
+                <img src="{% static 'images/linkedin-color-svgrepo-com.svg' %}" alt="Partager sur LinkedIn" class="share-icon">
+            </a>
+            <a href="mailto:?subject={{ article.titre|urlencode }}&body={{ request.build_absolute_uri|urlencode }}" 
+                class="share-button share-email" target="_blank">
+                <img src="{% static 'images/mail-svgrepo-com.svg' %}" alt="Partager par Email" class="share-icon">
+            </a>
+        </div>
+        {% if messages %}
+            {% for message in messages %}
+                {% if forloop.last %}
+                    <p class="login-prompt alert alert-{{ message.tags }}">{{ message }}</p>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <!-- Section commentaires -->
+        <div class="comments-section">
+            <div class="comments-header">
+                <h3>Commentaires ({{ commentaires|length }})</h3>
+                {% if user.is_authenticated %}
+                    <button id="toggleCommentForm" class="comment-toggle-button">
+                        <i class="fas fa-plus-circle"></i> Ajouter un commentaire
+                    </button>
+                {% endif %}
+            </div>
+        
+            {% if user.is_authenticated %}
+            <!-- Formulaire pour les commentaires principaux -->
+            <form method="post" id="commentForm" class="comment-form hidden">
+                {% csrf_token %}
+                <input type="hidden" name="commentaire_form" value="1">
+                <div class="custom-form-group">
+                    <label for="{{ form.contenu.id_for_label }}" class="custom-label">Votre commentaire:</label>
+                    {{ form.contenu }}
+                    {% if form.contenu.errors %}
+                    <p class="custom-error-text">{{ form.contenu.errors.0 }}</p>
+                    {% endif %}
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="custom-button">Publier</button>
+                    <button type="button" id="cancelComment" class="custom-button custom-button-outline">Annuler</button>
+                </div>
+            </form>
+        
+            <!-- Le formulaire de réponse sera inséré dynamiquement -->
+            <div id="replyFormTemplate" style="display: none;">
+                <form method="post" id="replyForm" class="reply-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="reponse_form" value="1">
+                    <input type="hidden" name="commentaire_id" id="reponse_commentaire_id" value="">
+                    <div class="custom-form-group">
+                        <label for="{{ reponse_form.contenu.id_for_label }}" class="custom-label">Votre réponse:</label>
+                        {{ reponse_form.contenu }}
+                        {% if reponse_form.contenu.errors %}
+                        <p class="custom-error-text">{{ reponse_form.contenu.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="custom-button">Répondre</button>
+                        <button type="button" class="cancelReply custom-button custom-button-outline">Annuler</button>
+                    </div>
+                </form>
+            </div>
+            {% else %}
+                <p class="login-prompt">Veuillez vous <a href="{% url 'accounts:login' %}" class="custom-link-text">connecter</a> pour commenter.</p>
+            {% endif %}
+
+            <div class="comments-list">
+                <!-- Affichage des commentaires avec réponses -->
+                {% for commentaire in commentaires %}
+                <div class="comment-card" id="comment-{{ commentaire.id }}">
+                    <div class="comment-header">
+                        <img src="{{ commentaire.auteur.profile_image.url }}" alt="Profile Image" class="comment-author-image">
+                        <h4 class="comment-author">{{ commentaire.auteur.name }}</h4>
+                        <span class="comment-date">Le {{ commentaire.date_creation|date:"d M Y à H:i" }}</span>
+                    </div>
+                    
+                    <div class="comment-body">
+                        <p>{{ commentaire.contenu }}</p>
+                    </div>
+                    <div class="comment-actions">
+                        {% if user.is_authenticated %}
+                            <button class="action-icon reply-icon" title="Répondre" data-comment-id="{{ commentaire.id }}">
+                                <i class="fas fa-reply"></i> Répondre
+                            </button>
+                            <button class="action-icon like-icon {% if user in commentaire.likes.all %}liked{% endif %}" 
+                                title="J'aime" data-comment-id="{{ commentaire.id }}">
+                                <i class="{% if user in commentaire.likes.all %}fas{% else %}far{% endif %} fa-heart"></i>
+                                <span class="like-count">{{ commentaire.total_likes }}</span>
+                            </button>
+                        {% endif %}
+                        
+                        {% if user.groups.all.0.name == 'Admin' %}
+                            <form method="post" action="{% url 'commentaire_delete' commentaire.id %}" class="delete-form">
+                                {% csrf_token %}
+                                <button type="submit" class="action-icon delete-icon" title="Supprimer">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Zone pour insérer le formulaire de réponse -->
+                    <div class="reply-form-container" id="reply-container-{{ commentaire.id }}"></div>
+                    
+                    <!-- Réponses au commentaire -->
+                    <div class="comment-replies">
+                        {% for reponse in commentaire.reponses.all %}
+                        <div class="reply-card">
+                            <div class="comment-header">
+                                <img src="{{ reponse.auteur.profile_image.url }}" alt="Profile Image" class="comment-author-image">
+                                <h4 class="comment-author">{{ reponse.auteur.name }}</h4>
+                                <span class="comment-date">Le {{ reponse.date_creation|date:"d M Y à H:i" }}</span>
+                            </div>
+                            <div class="comment-body">
+                                <p><span class="mention">@{{ commentaire.auteur.name }}</span> {{ reponse.contenu }}</p>
+                            </div>
+                            
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </article>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Récupération des éléments DOM
+        const commentForm = document.getElementById('commentForm');
+        const commentField = document.getElementById('{{ form.contenu.id_for_label }}');
+        const toggleCommentButton = document.getElementById('toggleCommentForm');
+        const cancelCommentButton = document.getElementById('cancelComment');
+        const replyFormTemplate = document.getElementById('replyFormTemplate');
+        
+        // Retirer le template de formulaire de réponse après avoir récupéré son contenu
+        let replyFormHTML = '';
+        if (replyFormTemplate) {
+            replyFormHTML = replyFormTemplate.innerHTML;
+            replyFormTemplate.parentNode.removeChild(replyFormTemplate);
+        }
+        
+        // Configuration initiale du champ de commentaire
+        if (commentField) {
+            commentField.classList.add('custom-input');
+            commentField.setAttribute('placeholder', 'Partagez votre avis sur cet article...');
+        }
+        
+        // Gestion du formulaire de commentaire principal
+        if (toggleCommentButton && commentForm) {
+            toggleCommentButton.addEventListener('click', function() {
+                // Fermer tous les formulaires de réponse ouverts
+                hideAllReplyForms();
+                
+                // Afficher/cacher le formulaire de commentaire
+                commentForm.classList.toggle('hidden');
+                
+                // Focus sur le champ de texte si le formulaire est visible
+                if (!commentForm.classList.contains('hidden')) {
+                    commentField.focus();
+                }
+            });
+        }
+        
+        if (cancelCommentButton && commentForm) {
+            cancelCommentButton.addEventListener('click', function() {
+                commentForm.classList.add('hidden');
+                if(commentField) commentField.value = '';
+            });
+        }
+        
+        // Fonction pour cacher tous les formulaires de réponse
+        function hideAllReplyForms() {
+            const containers = document.querySelectorAll('.reply-form-container');
+            containers.forEach(container => {
+                container.innerHTML = '';
+            });
+        }
+        
+        // Gestion des boutons de réponse aux commentaires
+        const replyButtons = document.querySelectorAll('.reply-icon');
+        replyButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const commentId = this.dataset.commentId;
+                const commentCard = this.closest('.comment-card');
+                const commentAuthor = commentCard.querySelector('.comment-author').textContent.trim();
+                const replyContainer = document.getElementById(`reply-container-${commentId}`);
+                
+                // Cacher le formulaire de commentaire principal
+                if (commentForm) commentForm.classList.add('hidden');
+                
+                // Vérifier si le formulaire de réponse est déjà affiché
+                const isReplyFormVisible = replyContainer && replyContainer.querySelector('form');
+                
+                // Cacher tous les formulaires de réponse
+                hideAllReplyForms();
+                
+                // Si le formulaire n'était pas déjà visible pour ce commentaire, l'afficher
+                if (!isReplyFormVisible && replyContainer) {
+                    // Insérer le formulaire de réponse
+                    replyContainer.innerHTML = replyFormHTML;
+                    
+                    // Configurer le formulaire
+                    const form = replyContainer.querySelector('form');
+                    const replyField = replyContainer.querySelector('textarea');
+                    const commentIdInput = replyContainer.querySelector('input[name="commentaire_id"]');
+                    
+                    if (commentIdInput) commentIdInput.value = commentId;
+                    if (replyField) {
+                        replyField.classList.add('custom-input');
+                        replyField.setAttribute('placeholder', `Répondre à ${commentAuthor}...`);
+                        replyField.focus();
+                    }
+                    
+                    // Gérer le bouton d'annulation
+                    const cancelButton = replyContainer.querySelector('.cancelReply');
+                    if (cancelButton) {
+                        cancelButton.addEventListener('click', function() {
+                            replyContainer.innerHTML = '';
+                        });
+                    }
+                }
+            });
+        });
+        
+        // Gestion des likes de commentaires
+        const commentLikeButtons = document.querySelectorAll('.like-icon');
+        commentLikeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const commentId = this.dataset.commentId;
+                const heartIcon = this.querySelector('i');
+                const likeCount = this.querySelector('.like-count');
+                
+                // Effectuer la requête AJAX pour le like
+                fetch(`/commentaire/${commentId}/like/`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}',
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        console.error('Erreur:', data.error);
+                        return;
+                    }
+                    
+                    // Mettre à jour l'interface utilisateur
+                    likeCount.textContent = data.total_likes;
+                    
+                    if (data.liked) {
+                        heartIcon.classList.replace('far', 'fas');
+                        this.classList.add('liked');
+                    } else {
+                        heartIcon.classList.replace('fas', 'far');
+                        this.classList.remove('liked');
+                    }
+                })
+                .catch(error => console.error('Erreur:', error));
+            });
+        });
+        
+        // Gestion des likes d'article
+        const likeButton = document.getElementById('likeButton');
+        if (likeButton) {
+            likeButton.addEventListener('click', function() {
+                if (this.hasAttribute('disabled')) return;
+                
+                const slug = this.dataset.articleSlug;
+                const heartIcon = this.querySelector('i');
+                
+                fetch(`/article/${slug}/like/`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}',
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('likeCount').textContent = data.total_likes;
+                    
+                    if (data.liked) {
+                        this.classList.add('liked');
+                        heartIcon.classList.replace('far', 'fas');
+                    } else {
+                        this.classList.remove('liked');
+                        heartIcon.classList.replace('fas', 'far');
+                    }
+                })
+                .catch(error => console.error('Erreur:', error));
+            });
+        }
+        
+        // Confirmation de suppression pour les commentaires et réponses
+        const deleteButtons = document.querySelectorAll('.delete-icon');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if (confirm('Êtes-vous sûr de vouloir supprimer ce message ?')) {
+                    const form = this.closest('form');
+                    form.submit();
+                }
+            });
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Sélectionne tous les boutons "like" pour les commentaires
+        document.querySelectorAll('.like-icon').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                const commentId = this.dataset.commentId;
+    
+                // Envoie une requête AJAX pour liker/déliker le commentaire
+                fetch(`/like_commentaire/${commentId}/`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}', // Assurez-vous d'inclure le jeton CSRF
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'same-origin'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Met à jour l'interface utilisateur
+                    const icon = this.querySelector('i');
+                    const likeCount = this.querySelector('.like-count');
+    
+                    if (data.liked) {
+                        this.classList.add('liked'); // Ajoute la classe "liked" au bouton
+                        icon.classList.remove('far'); // Supprime la classe "far" (cœur vide)
+                        icon.classList.add('fas'); // Ajoute la classe "fas" (cœur plein)
+                    } else {
+                        this.classList.remove('liked'); // Supprime la classe "liked" du bouton
+                        icon.classList.remove('fas'); // Supprime la classe "fas" (cœur plein)
+                        icon.classList.add('far'); // Ajoute la classe "far" (cœur vide)
+                    }
+    
+                    // Met à jour le nombre de likes
+                    likeCount.textContent = data.total_likes;
+                })
+                .catch(error => console.error('Erreur:', error));
+            });
+        });
+    });
+</script>
+{% endblock %}

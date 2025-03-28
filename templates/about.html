@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+   A propos de moi
+{% endblock title %}
+   
+{% block content %}
+      <!--==================== MAIN ====================-->
+      <main class="main">
+         <!--==================== ABOUT ====================-->
+         <section class="about section">
+            <h2 class="section__title">
+               Mes Informations <br> 
+               Personnelles
+            </h2>
+
+            <div class="about__container about__page container grid">
+               <div class="about__perfil perfil">
+                  <div class="perfil__content">
+                     <img src="{% static 'images/fond 1.jpg' %}" alt="image" class="perfil__img">
+                  </div>
+               </div>
+
+               <div class="about__content grid">
+                  <div class="about__data grid">
+                     <div class="about__info grid">
+                        <h1 class="about__name">Lekamya Ngambi Ben-Ido</h1>
+                        <h2 class="about__profession">Médecin Généraliste</h2>
+                        <p class="about__description">
+                           Passionné par le <b>soin des patients</b> et l'amélioration de la <b>qualité de vie</b>, j'ai des années d'expérience dans le domaine médical. Mes patients sont ravis des soins attentifs et des traitements efficaces que je leur offre.
+                       </p>
+                       
+                     </div>
+
+                     <a href="{% url 'contact_us' %}" class="about__button button">Me contacter</a>
+                  </div>
+
+                  <div class="about__skills">
+                     <h3 class="about__skills-title">Mes competences</h3>
+
+                     <div class="about__skills-content grid">
+
+                        <div class="about__skills-img"> <!-- Consultation -->
+                           <img src="{% static 'images/about_stethoscope.png' %}" alt="image Consultation" class="about__skills-img">
+                           <p class="about__skills-hover-text">Consultation</p>
+                        </div>
+
+                        <div class="about__skills-img"> <!-- Diagnostic -->
+                           <img src="{% static 'images/about_diagnosis.png' %}" alt="image Diagnostic" class="about__skills-img">
+                           <p class="about__skills-hover-text">Diagnostic</p>
+                        </div>
+
+                        <div class="about__skills-img"> <!-- Urgences -->
+                           <img src="{% static 'images/about_urgences.png' %}" alt="image Urgences" class="about__skills-img">
+                           <p class="about__skills-hover-text">Urgences</p>
+                        </div>
+
+                        <div class="about__skills-img"> <!-- Petite Chirurgie -->
+                           <img src="{% static 'images/about_scalpel.png' %}" alt="image Node.js" class="about__skills-img">
+                           <p class="about__skills-hover-text">Petite chirurgie</p>
+                        </div>
+
+                        <div class="about__skills-img"> <!-- Prise en charge -->
+                           <img src="{% static 'images/about_prise-en-charge.png' %}" alt="image React" class="about__skills-img">
+                           <p class="about__skills-hover-text">Prise en charge</p>
+                        </div>
+
+                        <div class="about__skills-img"> <!-- Collaboration -->
+                           <img src="{% static 'images/about_medical-team.png' %}" alt="image Collaboration" class="about__skills-img">
+                           <p class="about__skills-hover-text">Collaboration</p>
+                        </div>
+
+                        <div class="about__skills-img"> <!-- competences info -->
+                           <img src="{% static 'images/about_informatique.png' %}" alt="image Collaboration" class="about__skills-img">
+                           <p class="about__skills-hover-text">Compétences en informatique</p>
+                        </div>
+                     </div>
+
+                  </div>
+                  <!-- <a href="assets/pdf/Liz-Cv.pdf" download="" class="home__button button">Download CV</a> -->
+               </div>
+            </div>
+         </section>
+      </main>
+{% endblock content %}
+
+{% block script %}
+               {{ block.super }}
+               <script src="{% static 'assets/js/main.js' %}"></script>
+{% endblock script %}

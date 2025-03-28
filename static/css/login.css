@@ -1,0 +1,106 @@
+.custom-container {
+    max-width: 28rem;
+    margin: 5rem auto;
+    padding: 1.5rem;
+    background-color: var(--body-color);
+    color: var(--text-color);
+    transition: background-color 0.4s;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.custom-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: var(--title-color);
+}
+
+.custom-messages {
+    margin-bottom: 1.5rem;
+}
+
+.custom-message {
+    padding: 1rem;
+    border-radius: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.custom-error {
+    background-color: #fee2e2a7;
+    color: #dc2626;
+}
+
+.custom-success {
+    background-color: #d1fae5;
+    color: #059669;
+}
+
+.custom-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.custom-label {
+    display: block;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.custom-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--first-color-light);
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    color: var(--text-color);
+    background-color: var(--container-color);
+}
+
+.custom-input:focus {
+    outline: none;
+    border-color: var(--first-color);
+    box-shadow: 0 0 0 3px var(--shadow-color);
+}
+
+.custom-input::placeholder {
+    color: var(--text-color-light);
+    opacity: 0.7;
+}
+
+.custom-error-text {
+    color: #dc2626;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.custom-button {
+    width: 100%;
+    background-color: var(--first-color);
+    color: var(--white-color);
+    padding: 0.85rem 1rem;
+    border-radius: 0.75rem;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.custom-button:hover {
+    background-color: var(--first-color-alt);
+}
+
+.custom-link {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.custom-link-text {
+    color: var(--first-color);
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.custom-link-text:hover {
+    color: var(--first-color-alt);
+}

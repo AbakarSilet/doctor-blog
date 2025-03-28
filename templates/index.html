@@ -1,0 +1,381 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/articles_home.css' %}">
+{% endblock style %}
+{% block content %}
+   
+
+      <main class="main">
+         <!--==================== HOME ====================-->
+         <section class="home section">
+            <div class="home__rectangle"></div>
+
+            <div class="home__container container grid">
+               <div class="home__perfil perfil">
+                  <div class="perfil__content">
+                     <img src="{% static 'images/dr.jpg' %}" alt="image" class="perfil__img">
+                  </div>
+               </div>
+
+               <div class="home__content grid">
+                  <div class="home__data grid">
+                     <h1 class="home__name">Dr Lekamya Ngambi Ben-Ido</h1>
+
+                     <h2 class="home__profession">Médecin Généraliste</h2>
+                     <p>Je suis Médecin, Dr Lekamya Ngambi Ben-ido diplômé en médecine humaine de l'Université Adam Barka d'Abéché. Passionné d'Art, animé par l'esprit d'aide depuis je me déploie où je peux du mieux que je pourrais aux côtés de ceux qui ont besoin d'aide. Vous trouverez chez moi un engagement à servir et un désir de s'améliorer. Mes principaux loisirs la musique, la poésie et la philosophie. Ma foi soutient et me fait tenir par la grâce de Dieu. C'est un plaisir de découvrir et partager avec vous. 
+                        Soyez la bienvenue.</p>
+                     <div class="home__social">
+                        <a href="https://twitter.com/@BenNgambi20" target="_blank" class="home__social-link">
+                           <i class="ri-twitter-x-line"></i>
+                        </a>
+
+                        <a href="https://www.linkedin.com/in/ben-ido-lekamya-ngambi-511b82310?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="home__social-link">
+                           <i class="ri-linkedin-box-fill"></i>
+                        </a>
+
+                        <a href="https://www.youtube.com/@ben-idoLekamyaNgambi" target="_blank" class="home__social-link">
+                           <i class="ri-youtube-fill"></i>
+                        </a>
+                       
+                     </div>
+                  </div>
+
+               </div>
+            </div>
+         
+         </section>
+
+         <!--==================== SERVICES ====================-->
+         <section class="services section">
+            <h2 class="section__title">
+               Les  Services <br> 
+               Que Nous Offrons <br>
+               A la <b>clinique Espoir</b>
+            </h2>
+
+            <div class="services__container container grid">
+               <article class="services__card">
+                  <!-- Icône et titre -->
+                  <i class="ri-stethoscope-line services__icon"></i>
+                  <h2 class="services__title">Consultation de Médecine Générale</h2>
+               
+                  <!-- Description courte -->
+                  <p class="services__description">
+                     Prenez soin de votre santé avec des consultations médicales complètes et personnalisées. Nous sommes là pour vous accompagner dans votre bien-être au quotidien.
+                  </p>
+               
+                  <!-- Bouton pour ouvrir la modale -->
+                  <button class="services__button button">En savoir plus</button>
+               
+                  <!-- Boîte modale -->
+                  <div class="services__modal">
+                     <div class="services__modal-content">
+                        <!-- Bouton de fermeture -->
+                        <i class="ri-close-line services__modal-close"></i>
+               
+                        <!-- Titre de la modale -->
+                        <h2 class="services__modal-title">Consultation de Médecine Générale</h2>
+               
+                        <!-- Liste des détails du service -->
+                        <ul class="services__modal-list grid">
+                           <li class="services__modal-item">
+                              <i class="ri-checkbox-circle-line"></i>
+                              Diagnostic et traitement des maladies courantes (paludisme, typhoide, grippe, infections, etc.).
+                           </li>
+               
+                           <li class="services__modal-item">
+                              <i class="ri-checkbox-circle-line"></i>
+                              Bilan de santé annuel pour un suivi préventif.
+                           </li>
+               
+                           <li class="services__modal-item">
+                              <i class="ri-checkbox-circle-line"></i>
+                              Prescription de médicaments et ordonnances adaptées.
+                           </li>
+               
+                           <li class="services__modal-item">
+                              <i class="ri-checkbox-circle-line"></i>
+                              Orientation vers des spécialistes si nécessaire.
+                           </li>
+               
+                           <li class="services__modal-item">
+                              <i class="ri-checkbox-circle-line"></i>
+                              Conseils en nutrition, hygiène de vie et prévention.
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </article>
+
+               <article class="services__card">
+                  <!-- Icône et titre -->
+                  <i class="ri-microscope-line services__icon"></i>
+                  <h2 class="services__title">Consultations Spécialisées</h2>
+               
+                  <!-- Description courte -->
+                  <p class="services__description">
+                     Bénéficiez de l'expertise de nos médecins spécialistes pour des diagnostics précis et des traitements adaptés à vos besoins spécifiques.
+                  </p>
+               
+                  <!-- Bouton pour ouvrir la modale -->
+                  <button class="services__button button">En savoir plus</button>
+               
+                  <!-- Boîte modale -->
+                  <div class="services__modal">
+                     <div class="services__modal-content">
+                        <!-- Bouton de fermeture -->
+                        <i class="ri-close-line services__modal-close"></i>
+               
+                        <!-- Titre de la modale -->
+                        <h2 class="services__modal-title">Consultations Spécialisées</h2>
+               
+                        <!-- Liste des spécialités -->
+                        <ul class="services__modal-list grid">
+                           <li class="services__modal-item">
+                              <i class="ri-checkbox-circle-line"></i>
+                              Cardiologie : Prise en charge des maladies cardiaques.
+                           </li>
+               
+                           <li class="services__modal-item">
+                              <i class="ri-checkbox-circle-line"></i>
+                              Diabétologie : Gestion du diabète et suivi personnalisé.
+                           </li>
+               
+                           <li class="services__modal-item">
+                              <i class="ri-checkbox-circle-line"></i>
+                              Pédiatrie : Soins dédiés aux enfants et adolescents.
+                           </li>
+               
+                           <li class="services__modal-item">
+                              <i class="ri-checkbox-circle-line"></i>
+                              Traumatologie : Prise en charge des blessures et fractures.
+                           </li>
+               
+                           <li class="services__modal-item">
+                              <i class="ri-checkbox-circle-line"></i>
+                              Urologie : Diagnostic et traitement des troubles urinaires.
+                           </li>
+               
+                           <li class="services__modal-item">
+                              <i class="ri-checkbox-circle-line"></i>
+                              Gynéco-Obstétrique : Suivi gynécologique et obstétrical.
+                           </li>
+               
+                           <li class="services__modal-item">
+                              <i class="ri-checkbox-circle-line"></i>
+                              Chirurgie générale : Interventions chirurgicales courantes.
+                           </li>
+               
+                           <li class="services__modal-item">
+                              <i class="ri-checkbox-circle-line"></i>
+                              Gastro-entérologie : Prise en charge des troubles digestifs.
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </article>
+
+               <article class="services__card">
+                  <!-- Icône et titre -->
+                  <i class="ri-scissors-line services__icon"></i>
+                  <h2 class="services__title">Petite Chirurgie</h2>
+               
+                  <!-- Description courte -->
+                  <p class="services__description">
+                     Interventions chirurgicales mineures réalisées avec précision et sécurité. Nous prenons en charge les actes de petite chirurgie en toute confiance.
+                  </p>
+               
+                  <!-- Bouton pour ouvrir la modale -->
+                  <button class="services__button button">En savoir plus</button>
+               
+                  <!-- Boîte modale -->
+                  <div class="services__modal">
+                     <div class="services__modal-content">
+                        <!-- Bouton de fermeture -->
+                        <i class="ri-close-line services__modal-close"></i>
+               
+                        <!-- Titre de la modale -->
+                        <h2 class="services__modal-title">Petite Chirurgie</h2>
+               
+                        <!-- Liste des détails du service -->
+                        <ul class="services__modal-list grid">
+                           <li class="services__modal-item">
+                              <i class="ri-checkbox-circle-line"></i>
+                              Interventions réalisées sous anesthésie locale pour votre confort.
+                           </li>
+               
+                           <li class="services__modal-item">
+                              <i class="ri-checkbox-circle-line"></i>
+                              Prise en charge des plaies, abcès, et autres problèmes cutanés.
+                           </li>
+               
+                           <li class="services__modal-item">
+                              <i class="ri-checkbox-circle-line"></i>
+                              Suivi post-opératoire pour une récupération optimale.
+                           </li>
+               
+                           <li class="services__modal-item">
+                              <i class="ri-checkbox-circle-line"></i>
+                              Équipements stériles et procédures sécurisées pour éviter les infections.
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </article>
+            
+               <article class="services__card">
+                  <!-- Icône et titre -->
+                  <i class="ri-heart-pulse-line services__icon"></i>
+                  <h2 class="services__title">Pathologies Médicales</h2>
+               
+                  <!-- Description courte -->
+                  <p class="services__description">
+                     Diagnostic, traitement et suivi des pathologies médicales complexes. Nous vous accompagnons à chaque étape de votre parcours de santé.
+                  </p>
+               
+                  <!-- Bouton pour ouvrir la modale -->
+                  <button class="services__button button">En savoir plus</button>
+               
+                  <!-- Boîte modale -->
+                  <div class="services__modal">
+                     <div class="services__modal-content">
+                        <!-- Bouton de fermeture -->
+                        <i class="ri-close-line services__modal-close"></i>
+               
+                        <!-- Titre de la modale -->
+                        <h2 class="services__modal-title">Pathologies Médicales</h2>
+               
+                        <!-- Liste des détails du service -->
+                        <ul class="services__modal-list grid">
+                           <li class="services__modal-item">
+                              <i class="ri-checkbox-circle-line"></i>
+                              Diagnostic précis grâce à des équipements médicaux de pointe.
+                           </li>
+               
+                           <li class="services__modal-item">
+                              <i class="ri-checkbox-circle-line"></i>
+                              Plans de traitement personnalisés pour chaque patient.
+                           </li>
+               
+                           <li class="services__modal-item">
+                              <i class="ri-checkbox-circle-line"></i>
+                              Suivi régulier pour adapter le traitement en fonction de l'évolution de la pathologie.
+                           </li>
+               
+                           <li class="services__modal-item">
+                              <i class="ri-checkbox-circle-line"></i>
+                              Prise en charge multidisciplinaire (médecins, infirmiers, spécialistes).
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </article>
+
+               <article class="services__card">
+                  <i class="ri-syringe-line services__icon"></i>
+                  <h2 class="services__title"> Vaccination</h2>
+                  <p class="services__description">
+                     Protégez-vous et protégez vos proches grâce à nos services de vaccination complète. 
+                     Nous offrons des vaccins pour tous les âges et toutes les conditions médicales.
+                  </p>
+
+                  <button class="services__button button">En savoir plus</button>
+                  <!-- Modal 3 -->
+                  <div class="services__modal">
+                     <div class="services__modal-content">
+                        <i class="ri-close-line services__modal-close"></i>
+
+                        <h2 class="services__modal-title">Vaccination</h2>
+                        <ul class="services__modal-list grid">
+                           <li class="services__modal-item">
+                              <i class="ri-checkbox-circle-line"></i>
+                              Vaccins disponibles pour les enfants, les adultes et les seniors.
+                           </li>
+
+                           <li class="services__modal-item">
+                              <i class="ri-checkbox-circle-line"></i>
+                              Conseils personnalisés sur les vaccins nécessaires en fonction de votre profil médical.
+                           </li>
+
+                           <li class="services__modal-item">
+                              <i class="ri-checkbox-circle-line"></i>
+                              Suivi post-vaccination pour assurer votre sécurité et votre confort.
+                           </li>
+
+                           <li class="services__modal-item">
+                              <i class="ri-checkbox-circle-line"></i>
+                              Vaccins contre les maladies courantes (poliomelythe, grippe, COVID-19, hépatite, etc.).
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </article>
+            </div>
+         </section>
+
+         <!--==================== WORK ====================-->
+         
+         {% if articles %}
+            
+            <section class="work section">
+               <h2 class="section__title">
+                  Découvrez mes <br>
+                  Derniers articles
+               </h2>
+               <div class="row g-4">
+                  {% for article in articles %}
+                  <div class="col-lg-4 col-md-6 mb-4">
+                      <div class="card article-card">
+                          {% if article.image or article.video %}
+                          <div class="article-media">
+                              {% if article.image %}
+                              <img src="{{ article.image.url }}" alt="{{ article.titre }}">
+                              {% elif article.video %}
+                              <video controls>
+                                  <source src="{{ article.video.url }}" type="video/mp4">
+                                  Votre navigateur ne supporte pas la lecture de vidéos.
+                              </video>
+                              {% endif %}
+                          </div>
+                          {% endif %}
+                          <div class="card-body">
+                              <h5 class="card-title">{{ article.titre }}</h5>
+                              <p class="card-text">{{ article.contenu|truncatewords:30 }}</p>
+                              <div class="article-meta">
+                                  <!-- <span class="author">Par {{ article.auteur }}</span> -->
+                                  <span class="date">{{ article.date_creation|date:"d/m/Y" }}</span>
+                              </div>
+                              <a href="{% url 'article_detail' article.slug %}" class="btn btn-outline-primary">Lire plus</a>
+                          </div>
+                      </div>
+                  </div>
+                  {% empty %}
+                  <div class="col-12">
+                      <p class="text-center">Aucun article pour le moment.</p>
+                  </div>
+                  {% endfor %}
+              </div>
+            </section>
+
+         {% endif %}
+
+         <!--==================== CONTACT ====================-->
+         <section class="contact section">
+            <div class="contact__container container grid">
+               <h2 class="section__title">
+                  Une question?<br>
+                  Contactez-moi
+               </h2>
+
+               <a href="{% url 'contact_us' %}" class="contact__button button">Contactez Moi</a>
+            </div>
+         </section>
+      </main>
+{% endblock content %}
+
+{% block script %}
+   {{ block.super }}
+{% endblock script %}
+   

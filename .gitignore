@@ -1,0 +1,11 @@
+text.html
+.env
+*.pyc
+__pycache__/
+*.sqlite3
+.idea/
+.tmp.driveupload/
+frontend/
+fixtures/
+staticfiles/
+media/

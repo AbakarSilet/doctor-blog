@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock style %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="profile-header">
+        {% if user.profile_image %}
+        <img src="{{ user.profile_image.url }}" alt="Profile" class="profile-image">
+        {% endif %}
+    </div>
+
+    <div class="profile-divider">
+        <h3 class="profile-section-title">Informations du compte</h3>
+        <div class="profile-grid">
+            <div>
+                <h2 class="profile-name">{{ user.name }}</h2>
+                <p class="profile-email">{{ user.email }}</p>
+            </div>
+            <div>
+                <p class="profile-detail-label">Date d'inscription</p>
+                <p class="profile-detail-value">{{ user.date_joined|date:"d/m/Y" }}</p>
+            </div>
+        </div>
+        <a href="{% url 'accounts:edit_profile' %}" class="profile-edit-link">Éditer le profil</a>
+    </div>
+</div>
+{% endblock %}

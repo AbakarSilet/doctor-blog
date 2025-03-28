@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+   Contactez Dr Ben
+{% endblock title %}
+   
+{% block content %}
+   
+      <main class="main">
+         <!--==================== CONTACT ====================-->
+         <section class="contact section">
+            <h2 class="section__title">
+               Discutons ensemble <br>
+               de votre santé et de vos besoins
+           </h2>
+
+            <div class="contact__page container grid">
+               <form class="contact__form grid" id="contact-form" action="{% url 'send_email' %}" method="post">
+                  {% csrf_token %}
+                  <div class="contact__group grid">
+                     <div class="contact__box">
+                        <input type="text" name="user_name" id="name" required placeholder="Ecrivez vos noms" class="contact__input">
+                        <label for="name" class="contact__label">Nom complet</label>
+                     </div>
+
+                     <div class="contact__box">
+                        <input type="email" name="user_email" id="email" required placeholder="Entrez votre Adresse email valide" class="contact__input">
+                        <label for="email" class="contact__label">Adresse Email</label>
+                     </div>
+                  </div>
+
+                  <div class="contact__box contact__area">
+                     <textarea name="user-message" id="message" required placeholder="Ecrivez votre message" class="contact__input"></textarea>
+                     <label for="message" class="contact__label">Message</label>
+                  </div>
+
+                  <p class="contact__message" id="contact-message"></p>
+
+                  <button type="submit" class="contact__send button">Envoyez le message</button>
+               </form>
+            </div>
+         </section>
+      </main>
+{% endblock content %}
+
+{% block script %}
+   {{ block.super }}
+{% endblock script %}
+   

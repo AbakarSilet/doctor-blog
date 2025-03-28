@@ -1,0 +1,65 @@
+<footer class="footer">
+    <div class="footer__container container grid">
+       <div class="footer__content grid">
+          <a href="{% url 'home' %}" class="footer__logo">Dr Ben</a>
+
+          <ul class="footer__links">
+             <li>
+                <a href="{% url 'about_us' %}" class="footer__link">A propos de moi</a>
+             </li>
+
+             <li>
+                <a href="{% url 'portfolio' %}" class="footer__link">Portfolio</a>
+             </li>
+
+             <li>
+               <a href="{% url 'article_list' %}" class="footer__link">Blog</a>
+            </li>
+
+             <li>
+                <a href="{% url 'contact_us' %}" class="footer__link">Contact</a>
+             </li>
+
+             {% if user.groups.all.0.name == 'Admin' %}
+             <li>
+               <a href="{% url 'transition_page' %}" class="footer__link">Transition</a>
+            </li>
+            {% endif %}
+          </ul>
+
+          <div class="footer__social">
+             <a href="https://www.youtube.com/@ben-idoLekamyaNgambi" target="_blank" class="footer__social-link">
+                <i class="ri-youtube-fill"></i>
+             </a>
+
+             <a href="https://twitter.com/@BenNgambi20" target="_blank" class="footer__social-link">
+                <i class="ri-twitter-x-line"></i>
+             </a>
+
+             <a href="https://www.linkedin.com/in/ben-ido-lekamya-ngambi-511b82310?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="footer__social-link">
+                <i class="ri-linkedin-box-fill"></i>
+             </a>
+          </div>
+          <ul>
+            
+            {% if user.is_authenticated %}
+            <li>
+               <a href="{% url 'accounts:logout' %}" class="footer__link auth" id="logout-link">Déconnexion</a>
+            </li>
+            {% else %}
+               <li>
+                  <a href="{% url 'accounts:login' %}" class="footer__link auth">Connexion</a>
+               </li>
+               <li>
+                  <a href="{% url 'accounts:signup' %}" class="footer__link auth">Inscription</a>
+               </li>
+            {% endif %}
+            
+          </ul>
+       </div>
+
+       <span class="footer__copy">
+          &#169; Abakarix4. Tous droits reserves
+       </span>
+    </div>
+ </footer>
