@@ -1,6 +1,7 @@
 text.html
 .env
 *.pyc
+a faire.txt
 __pycache__/
 *.sqlite3
 .idea/
