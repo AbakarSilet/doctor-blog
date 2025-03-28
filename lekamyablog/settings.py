@@ -1,6 +1,8 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+
+from urllib.parse import urlparse
 import dj_database_url
 
 
@@ -23,8 +25,8 @@ if os.getenv('ENVIRONMENT') == 'development':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
-
+ALLOWED_HOSTS = ["127.0.0.1", "localhost","doctorlekamyangambi.up.railway.app"]
+CSRF_TRUSTED_ORIGINS = ["https://doctorlekamyangambi.up.railway.app"]
 
 # Application definition
 
@@ -88,9 +90,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'lekamyablog.wsgi.application'
 
-from urllib.parse import urlparse
 
-# Récupération de l'URL de la base de données depuis les variables d'environnement
+
 DATABASE_URL = os.environ.get('DATABASE_URL')
 
 if DATABASE_URL:
@@ -99,13 +100,13 @@ if DATABASE_URL:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': db_info.path[1:],  # Supprime le slash initial
+            'NAME': db_info.path[1:],  
             'USER': db_info.username,
             'PASSWORD': db_info.password,
             'HOST': db_info.hostname,
             'PORT': db_info.port,
             'OPTIONS': {
-                'sslmode': 'require',  # SSL obligatoire sur Railway
+                'sslmode': 'require',  
             },
         }
     }
