@@ -1,1 +1,1 @@
-web: gunicorn lekamyablog.wsgi --log-file -
+web: gunicorn lekamyablog.wsgi
