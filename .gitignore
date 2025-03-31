@@ -5,6 +5,7 @@ A faire.txt
 a faire.txt
 __pycache__/
 *.sqlite3
+debug.log
 .idea/
 .tmp.driveupload/
 frontend/
