@@ -25,8 +25,8 @@ if os.getenv('ENVIRONMENT') == 'development':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
-# CSRF_TRUSTED_ORIGINS = ["https://doctorlekamyangambi.up.railway.app"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "https://lekamyangambibenido.up.railway.app/"]
+CSRF_TRUSTED_ORIGINS = ["https://lekamyangambibenido.up.railway.app"]
 
 # Application definition
 
@@ -216,15 +216,15 @@ USE_I18N = True
 USE_L10N = True 
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# EMAIL_BACKEND = "anymail.backends.brevo.EmailBackend"
-# DEFAULT_FROM_EMAIL = "benidongambilekamya@gmail.com"
+EMAIL_BACKEND = "anymail.backends.brevo.EmailBackend"
+DEFAULT_FROM_EMAIL = "benidongambilekamya@gmail.com"
 
-# ANYMAIL = {
-#     "BREVO_API_KEY": os.getenv('BREVO_API_KEY'),
-#     "IGNORE_UNSUPPORTED_FEATURES": True,
-# }
+ANYMAIL = {
+    "BREVO_API_KEY": os.getenv('BREVO_API_KEY'),
+    "IGNORE_UNSUPPORTED_FEATURES": True,
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
