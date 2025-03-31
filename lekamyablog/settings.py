@@ -25,8 +25,17 @@ if os.getenv('ENVIRONMENT') == 'development':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'lekamyangambibenido.up.railway.app']
-CSRF_TRUSTED_ORIGINS = [ 'https://lekamyangambibenido.up.railway.app' ]
+ALLOWED_HOSTS = [
+    'lekamyangambibenido.up.railway.app',
+    '127.0.0.1',
+    'localhost'
+]
+
+# Configuration pour Railway
+CSRF_TRUSTED_ORIGINS = [
+    'https://lekamyangambibenido.up.railway.app',
+    'https://*.railway.app'
+]
 
 # Application definition
 

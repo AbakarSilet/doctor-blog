@@ -1,2 +1,1 @@
-release: python manage.py collectstatic --noinput
-web: gunicorn lekamyablog.wsgi
+web: gunicorn lekamyablog.wsgi --bind 0.0.0.0:$PORT --workers 3 --timeout 120
