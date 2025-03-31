@@ -25,7 +25,7 @@ if os.getenv('ENVIRONMENT') == 'development':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "https://lekamyangambibenido.up.railway.app/"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "lekamyangambibenido.up.railway.app"]
 CSRF_TRUSTED_ORIGINS = ["https://lekamyangambibenido.up.railway.app"]
 
 # Application definition
