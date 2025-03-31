@@ -1,7 +1,19 @@
+import logging
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_str
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.core.mail import EmailMultiAlternatives
+from django.contrib import messages
+from django.conf import settings
+from django.urls import reverse
+from .forms import CustomPasswordResetForm, CustomSetPasswordForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from .models import User
 from .forms import EditUserProfileForm, SignUpForm, LoginForm, UserProfileForm
 
 
@@ -66,21 +78,6 @@ def edit_profile_view(request):
         form = EditUserProfileForm(instance=user)
     return render(request, 'accounts/edit_profile.html', {'form': form})
 
-
-
-import logging
-from django.shortcuts import render, redirect
-from django.contrib.auth.tokens import default_token_generator
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import force_bytes, force_str
-from django.contrib.sites.shortcuts import get_current_site
-from django.template.loader import render_to_string
-from django.core.mail import EmailMultiAlternatives
-from django.contrib import messages
-from django.conf import settings
-from django.urls import reverse
-from .forms import CustomPasswordResetForm, CustomSetPasswordForm
-from .models import User
 
 # Configuration du logger
 logger = logging.getLogger(__name__)
