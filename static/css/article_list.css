@@ -1,5 +1,9 @@
 /* Style pour la section des articles */
 .articles-section {
+  margin-top: auto;
+}
+
+.articles-section {
   padding: var(--header-height) 0;
   background-color: var(--body-color);
 }

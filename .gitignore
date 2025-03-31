@@ -1,4 +1,5 @@
 text.html
+A faire.txt
 .env
 *.pyc
 a faire.txt
@@ -8,5 +9,4 @@ __pycache__/
 .tmp.driveupload/
 frontend/
 fixtures/
-staticfiles/
 media/
