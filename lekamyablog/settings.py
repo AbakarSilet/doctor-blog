@@ -216,14 +216,15 @@ USE_I18N = True
 USE_L10N = True 
 
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-EMAIL_BACKEND = "anymail.backends.brevo.EmailBackend"
-DEFAULT_FROM_EMAIL = "benidongambilekamya@gmail.com"
-ANYMAIL = {
-    "BREVO_API_KEY": os.getenv('BREVO_API_KEY'),
-    "IGNORE_UNSUPPORTED_FEATURES": True,
-}
+# EMAIL_BACKEND = "anymail.backends.brevo.EmailBackend"
+# DEFAULT_FROM_EMAIL = "benidongambilekamya@gmail.com"
+
+# ANYMAIL = {
+#     "BREVO_API_KEY": os.getenv('BREVO_API_KEY'),
+#     "IGNORE_UNSUPPORTED_FEATURES": True,
+# }
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/

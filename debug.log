@@ -1,0 +1,106 @@
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\ABAKARIX4\Desktop\Personnel\Pythonix4\lekamyablog\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /accounts/login/ HTTP/1.1" 200 9065
+"GET /static/assets/css/swiper-bundle.min.css HTTP/1.1" 200 18435
+"GET /static/assets/js/main.js HTTP/1.1" 200 2530
+"GET /static/assets/css/styles.css HTTP/1.1" 200 20677
+"GET /static/assets/js/index.js HTTP/1.1" 200 2315
+"GET /static/css/login.css HTTP/1.1" 200 2069
+"GET /static/assets/js/swiper-bundle.min.js HTTP/1.1" 200 148121
+"GET /static/assets/js/main.js HTTP/1.1" 200 2530
+"GET /static/assets/js/swiper-bundle.min.js HTTP/1.1" 200 148121
+"GET /static/assets/js/index.js HTTP/1.1" 200 2315
+"GET /static/assets/img/favicon.png HTTP/1.1" 200 644
+"GET /accounts/password-reset/ HTTP/1.1" 200 6071
+Starting new HTTPS connection (1): api.brevo.com:443
+https://api.brevo.com:443 "POST /v3/smtp/email HTTP/1.1" 201 64
+Starting new HTTPS connection (1): api.brevo.com:443
+https://api.brevo.com:443 "POST /v3/smtp/email HTTP/1.1" 201 64
+"POST /accounts/password-reset/ HTTP/1.1" 302 0
+"GET /accounts/login/ HTTP/1.1" 200 9363
+C:\Users\ABAKARIX4\Desktop\Personnel\Pythonix4\lekamyablog\blog\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\ABAKARIX4\Desktop\Personnel\Pythonix4\lekamyablog\blog\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /contact/ HTTP/1.1" 200 7263
+Starting new HTTPS connection (1): api.brevo.com:443
+https://api.brevo.com:443 "POST /v3/smtp/email HTTP/1.1" 201 64
+"POST /send_email/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 26291
+"GET /media/articles/videos/0703.mp4 HTTP/1.1" 304 0
+- Broken pipe from ('127.0.0.1', 62792)
+C:\Users\ABAKARIX4\Desktop\Personnel\Pythonix4\lekamyablog\blog\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\ABAKARIX4\Desktop\Personnel\Pythonix4\lekamyablog\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 26291
+code 400, message Bad request syntax ('\x16\x03\x01\x07a\x01\x00\x07]\x03\x03÷Œ#‹\x1a÷\x0fŸ&±©o©dq¡CÔw\x99\xad(')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request version ('\'\x00X\x0fnu∆1Ø’R\'#÷¡sª\x99p«\x0fgÕT\x98ŒlHº\x16T\x00"\x13\x01\x13\x03\x13\x02¿+¿/Ã©Ã®¿,¿0¿')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request version ('¢+Ÿ@/\x05Ì\x98fC\x082ˇ–\xadΩµeE—\x07\x02\x00"\x13\x01\x13\x03\x13\x02¿+¿/Ã©Ã®¿,¿0¿')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request syntax ('\x16\x03\x01\x02\x90\x01\x00\x02\x8c\x03\x03@CπF')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request version ('\x8a‡¿?–\'w\x1b—\x9d≤|>œ\x80…\x06ÚF–ÿm<\x8a-Jn\x86\x17\x13°°\x00"\x13\x01\x13\x03\x13\x02¿+¿/Ã©Ã®¿,¿0¿')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request version ('\\z€i‘\x88Ë&\x9dB\x96\x08π\x18\x01\x00"\x13\x01\x13\x03\x13\x02¿+¿/Ã©Ã®¿,¿0¿')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request version ('qc&W \x9a\x12ﬂ\x88<(∏}c?(\x0103\x86‹j\x10∏\x8c¥±Ê∂\x00"\x13\x01\x13\x03\x13\x02¿+¿/Ã©Ã®¿,¿0¿')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request version ('“J~wr\x8aJg˚÷≤H(˘bÕ!–A;Ì;\x80\x00"\x13\x01\x13\x03\x13\x02¿+¿/Ã©Ã®¿,¿0¿')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+"GET /accounts/login/ HTTP/1.1" 200 9065
+Watching for file changes with StatReloader
+code 400, message Bad request version ('V\x00"\x13\x01\x13\x03\x13\x02¿+¿/Ã©Ã®¿,¿0¿')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request version ('¥‡LÙ[£h\x00"\x13\x01\x13\x03\x13\x02¿+¿/Ã©Ã®¿,¿0¿')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+Watching for file changes with StatReloader
+C:\Users\ABAKARIX4\Desktop\Personnel\Pythonix4\lekamyablog\lekamyablog\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\ABAKARIX4\Desktop\Personnel\Pythonix4\lekamyablog\lekamyablog\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\ABAKARIX4\Desktop\Personnel\Pythonix4\lekamyablog\lekamyablog\settings.py changed, reloading.
+Watching for file changes with StatReloader
+code 400, message Bad request syntax ('\x16\x03\x01\x07a\x01\x00\x07]\x03\x03¡ÊÌEƒˆ\x7f')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+"GET /accounts/login/ HTTP/1.1" 200 9065
+code 400, message Bad request version ('=Û|›:Îæµπc%V f\x86–\x9d\x07˙Û\x00"\x13\x01\x13\x03\x13\x02¿+¿/Ã©Ã®¿,¿0¿')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request version ('\x11±\\=')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request version ('˝\x17\x16Î˛|\x14ª\x97\x90!F\x9a9J˘;\x96XP,;tÊ\x99AÃ\x00"\x13\x01\x13\x03\x13\x02¿+¿/Ã©Ã®¿,¿0¿')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request version ('Z©|VUußˆo?]83Œ\x8f\x1b\x98ma\x12ﬁ‰E_&U˝\x11´4˜\x00"\x13\x01\x13\x03\x13\x02¿+¿/Ã©Ã®¿,¿0¿')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request version ('\x97g¸\x1a_ª\x173ºˆ°T\x00abØ»9\x00"\x13\x01\x13\x03\x13\x02¿+¿/Ã©Ã®¿,¿0¿')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request version ('\\´ÿ\x91±S¸p:')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request version ('Ëy\x15\\{Íg\x81©7<¨P≤ij£\x9b\x9c\x86‡ΩEØ\x11')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+code 400, message Bad request version ('\x98‘,Z\x89\x07ß∑—!≈d’\x06\x8c§µenˇ\x12’\x14\x9f⁄€\x880±Ê1v\x00"\x13\x01\x13\x03\x13\x02¿+¿/Ã©Ã®¿,¿0¿')
+You're accessing the development server over HTTPS, but it only supports HTTP.
+"GET /accounts/login/ HTTP/1.1" 200 9065
+"GET /accounts/password-reset/ HTTP/1.1" 200 6071
+Starting new HTTPS connection (1): api.brevo.com:443
+https://api.brevo.com:443 "POST /v3/smtp/email HTTP/1.1" 201 64
+"POST /accounts/password-reset/ HTTP/1.1" 302 0
+"GET /accounts/login/ HTTP/1.1" 200 9299
+C:\Users\ABAKARIX4\Desktop\Personnel\Pythonix4\lekamyablog\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /accounts/password-reset/ HTTP/1.1" 200 6071
+Starting new HTTPS connection (1): api.brevo.com:443
+https://api.brevo.com:443 "POST /v3/smtp/email HTTP/1.1" 201 64
+"POST /accounts/password-reset/ HTTP/1.1" 302 0
+"GET /accounts/login/ HTTP/1.1" 200 9363
+"GET /accounts/password-reset/ HTTP/1.1" 200 6071
+Starting new HTTPS connection (1): api.brevo.com:443
+https://api.brevo.com:443 "POST /v3/smtp/email HTTP/1.1" 201 64
+"POST /accounts/password-reset/ HTTP/1.1" 302 0
+"GET /accounts/login/ HTTP/1.1" 200 9363
+C:\Users\ABAKARIX4\Desktop\Personnel\Pythonix4\lekamyablog\lekamyablog\settings.py changed, reloading.
