@@ -23,14 +23,14 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = [
-    'lekamyangambibenido.up.railway.app',
+    'docteurbenido.up.railway.app',
     '127.0.0.1',
     'localhost'
 ]
 
 # Configuration pour Railway
 CSRF_TRUSTED_ORIGINS = [
-    'https://lekamyangambibenido.up.railway.app',
+    'https://docteurbenido.up.railway.app',
     'https://*.railway.app'
 ]
 
