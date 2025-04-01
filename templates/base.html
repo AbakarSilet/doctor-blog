@@ -1,68 +1,88 @@
 {% load static %}
 <!DOCTYPE html>
-   <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en">
 
-      <!--=============== FAVICON ===============-->
-      <link rel="shortcut icon" href="{% static 'assets/img/favicon.png' %}" type="image/x-icon">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-{% block style %}
+    <!--=============== FAVICON ===============-->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
 
-  
-      <!--=============== REMIXICONS ===============-->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    {% block style %}
 
-      <!--=============== SWIPER CSS ===============-->
-      <link rel="stylesheet" href="{% static 'assets/css/swiper-bundle.min.css' %}">
 
-      <!--=============== CSS ===============-->
-      <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
-{% endblock style %}
-      <title>
-      {% block title %}Dr Lekamya Ngambi Ben-Ido {% endblock title %}</title>
-        
+    <!--=============== REMIXICONS ===============-->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css" as="style"
+        onload="this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+    </noscript>
+
+    <!--=============== FONT AWESOME ===============-->
+    <link rel="preload" href="{% static 'fontawesome/css/all.min.css' %}" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
+    </noscript>
+
+    <!--=============== SWIPER CSS ===============-->
+    <link rel="preload" href="{% static 'assets/css/swiper-bundle.min.css' %}" as="style"
+        onload="this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="{% static 'assets/css/swiper-bundle.min.css' %}">
+    </noscript>
+
+    <!--=============== CSS PRINCIPAL ===============-->
+    <link rel="preload" href="{% static 'assets/css/styles.css' %}" as="style" onload="this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+    </noscript>
+    {% endblock style %}
+    <title>
+        {% block title %}Dr Lekamya Ngambi Ben-Ido {% endblock title %}</title>
+
 </head>
+
 <body>
     <!--==================== HEADER ====================-->
     {% include 'includes/header.html' %}
 
     <!--==================== MAIN ====================-->
-      {% block content %}
-        
-      {% endblock content %}
+    {% block content %}
+
+    {% endblock content %}
 
     <!--==================== FOOTER ====================-->
     {% include 'includes/footer.html' %}
 
-    
-    {% block script %}
-      <a href="#" class="scrollup" id="scroll-up">
-         <i class="ri-arrow-up-line"></i>
-      </a>
 
-      <!-- SCRIPT JS ===============-->
-      <script src="{% static 'assets/js/main.js' %}"></script>
-      <script src="{% static 'assets/js/swiper-bundle.min.js' %}"></script>
-      <script src="{% static 'assets/js/index.js' %}"></script>
-      <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                  var logoutLink = document.getElementById('logout-link');
-              
-                  if (logoutLink) {
-                      logoutLink.addEventListener('click', function (event) {
-                          event.preventDefault();
-                          var confirmLogout = confirm("Êtes-vous sûr de vouloir vous déconnecter ?");
-                          if (confirmLogout) {
-                              window.location.href = logoutLink.href;
-                          }
-                      });
-                  }
-              });
-              
-      </script>
+    {% block script %}
+    <a href="#" class="scrollup" id="scroll-up">
+        <i class="ri-arrow-up-line"></i>
+    </a>
+
+    <!-- SCRIPT JS ===============-->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    <script src="{% static 'assets/js/swiper-bundle.min.js' %}" defer></script>
+    <script src="{% static 'assets/js/index.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var logoutLink = document.getElementById('logout-link');
+
+            if (logoutLink) {
+                logoutLink.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    var confirmLogout = confirm("Êtes-vous sûr de vouloir vous déconnecter ?");
+                    if (confirmLogout) {
+                        window.location.href = logoutLink.href;
+                    }
+                });
+            }
+        });
+
+    </script>
     {% endblock script %}
 </body>
+
 </html>
