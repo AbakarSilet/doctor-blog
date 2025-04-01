@@ -102,7 +102,6 @@ def password_reset_request(request):
                 reset_url = request.build_absolute_uri(
                     reverse('accounts:password_reset_confirm', kwargs={'uidb64': uid, 'token': token})
                 )
-                print(f'{reset_url} est  url genere')
                 
                 # Préparation du contenu des emails (texte et HTML)
                 context = {
