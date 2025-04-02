@@ -1,11 +1,11 @@
 text.html
+debug.log
 A faire.txt
 .env
 *.pyc
 a faire.txt
 __pycache__/
 *.sqlite3
-debug.log
 .idea/
 .tmp.driveupload/
 frontend/
