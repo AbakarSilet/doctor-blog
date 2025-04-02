@@ -20,27 +20,17 @@
     </noscript>
 
     <!--=============== FONT AWESOME ===============-->
-    <link rel="preload" href="{% static 'fontawesome/css/all.min.css' %}" as="style"
-        onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
-    </noscript>
+    <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
 
     <!--=============== SWIPER CSS ===============-->
-    <link rel="preload" href="{% static 'assets/css/swiper-bundle.min.css' %}" as="style"
-        onload="this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="{% static 'assets/css/swiper-bundle.min.css' %}">
-    </noscript>
+    <link rel="stylesheet" href="{% static 'assets/css/swiper-bundle.min.css' %}">
 
     <!--=============== CSS PRINCIPAL ===============-->
-    <link rel="preload" href="{% static 'assets/css/styles.css' %}" as="style" onload="this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
-    </noscript>
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+
     {% endblock style %}
-    <title>
-        {% block title %}Dr Lekamya Ngambi Ben-Ido {% endblock title %}</title>
+
+    <title>{% block title %}Dr Lekamya Ngambi Ben-Ido {% endblock title %}</title>
 
 </head>
 
