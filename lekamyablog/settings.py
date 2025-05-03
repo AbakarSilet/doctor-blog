@@ -23,18 +23,17 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = [
-    'docteurbenido.up.railway.app',
+    'lekamyangambibenido.up.railway.app',
     '127.0.0.1',
     'localhost'
 ]
 
 # Configuration pour Railway
 CSRF_TRUSTED_ORIGINS = [
-    'https://docteurbenido.up.railway.app',
+    'https://lekamyangambibenido.up.railway.app',
     'https://*.railway.app'
 ]
 
-# Application definition
 
 INSTALLED_APPS = [
     'jazzmin',

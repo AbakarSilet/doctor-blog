@@ -1,5 +1,5 @@
 *.pyc
-a faire.txt
+A faire.txt
 __pycache__/
 *.sqlite3
 .idea/
