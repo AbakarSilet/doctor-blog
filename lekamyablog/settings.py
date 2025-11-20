@@ -23,9 +23,9 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = [
-    'lekamyangambibenido.up.railway.app',
+    'https://docteurbenido.onrender.com',
     '127.0.0.1',
-    'localhost'
+    'localhost',
 ]
 
 # Configuration pour Railway
