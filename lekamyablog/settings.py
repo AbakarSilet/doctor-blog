@@ -23,6 +23,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = [
+    'docteurbenido.onrender.com',
     'https://docteurbenido.onrender.com',
     '127.0.0.1',
     'localhost',
