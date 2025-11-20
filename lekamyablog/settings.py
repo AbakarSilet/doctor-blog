@@ -31,8 +31,8 @@ ALLOWED_HOSTS = [
 
 # Configuration pour Railway
 CSRF_TRUSTED_ORIGINS = [
-    'https://lekamyangambibenido.up.railway.app',
-    'https://*.railway.app'
+    'https://docteurbenido.onrender.com',
+    'https://*.onrender.com'
 ]
 
 
